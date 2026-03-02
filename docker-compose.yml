@@ -1,0 +1,36 @@
+services:
+  solr-il:
+    image: solr:9.10.0
+    container_name: solr-il
+    restart: always
+    volumes:
+      - type: volume
+        source: solr-il-volume
+        target: /var/solr
+    environment:
+      SOLR_MODULES: analysis-extras
+      # Edit SOLR_HEAP below. Recommended Solr memory allocation: 1 GB, plus 1 GB RAM for each 20,000 PDFs.
+      SOLR_HEAP: 2g
+  i-librarian:
+    image: i-librarian-pro:6.0.26
+    container_name: il
+    ports:
+      - "127.0.0.1:9060:9060"
+    restart: always
+    volumes:
+      - type: bind
+        # Edit source below. Permanent data storage directory on the host, e.g. /var/www/i-librarian-pro.
+        source: /var/www/i-librarian-pro
+        target: /var/www/i-librarian-pro
+      - type: bind
+        # Edit source below. Log storage directory on the host, e.g. /var/log/i-librarian.
+        source: /var/log/i-librarian
+        target: /var/log/i-librarian
+      - type: bind
+        # Edit source below. The config directory on the host, e.g. /etc/opt/i-librarian-pro.
+        source: /etc/opt/i-librarian-pro
+        target: /etc/opt/i-librarian-pro
+        read_only: true
+volumes:
+  solr-il-volume:
+    name: "solr-il-volume"
