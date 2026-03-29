@@ -77,12 +77,12 @@ otherwise:
 5. Scilico may bundle certain Open Source Software whose terms and conditions can be found
    at their respective websites. When you are using them, You shall adhere to their relevant terms and conditions.
 
-### 5. Maintenance and support
+### 5. Maintenance
 
 1. Scilico will notify You of any available Updates.
 2. You will be entitled to receive Updates (Maintenance releases x.x.X).
 3. You are not entitled to receive Updates to different software major and minor releases (Feature releases x.X.x).
-4. Any maintenance and support provided by Scilico, including the provision of Updates, will be provided in
+4. Any maintenance provided by Scilico, including the provision of Updates, will be provided in
    an adequate way on an “as is” basis without any warranty, as soon as reasonably practicable, subject to availability
    of personnel.
 5. The terms of this EULA will govern any Updates.
