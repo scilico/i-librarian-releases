@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.2] - 2026-04-14
+
+### Added
+- Integrated **Bleve** as the primary search engine.
+
+### Removed
+- Apache Solr (replaced by Bleve; no external Java dependency required).
+
+### Fixed
+- Items could not be added to new projects in Omnitool.
+
+### Changed
+- User status "suspended" is now reserved for internal use.
+- Minor Omnitool improvements.
+
 ## [6.0.27] - 2026-03-29
 
 ### Removed

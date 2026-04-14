@@ -5,32 +5,30 @@ All instructions are for *docker engine*.
 ## 1. Build *I, Librarian* image
 
 ```sh
-docker build -t i-librarian-pro:6.0.26 - < i-librarian-pro-6.0.26.tgz
+docker build -t i-librarian-pro:6.1.2 - < i-librarian-pro-6.1.2.tgz
 ```
 
-## 2. Start *I, Librarian* and *Solr* containers with docker compose
+## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-pro-6.0.26.tgz ./docker-compose.yml
+tar xzf i-librarian-pro-6.1.2.tgz ./docker-compose.yml
 ```
 
 The included `docker-compose.yml` will work as is, but feel free to customize your setup.
 
-* Line 13: *Solr* memory allocation. Recommended Solr memory allocation is 1 GB + 1 GB RAM for each 20,000 PDFs. This is only
-  a rough estimate, you will need to experiment with RAM requirements yourself.
-* Line 23: storage directory on the host, default is `/var/www/i-librarian-pro`. The directory must exist on the host:
+* Line 11: storage directory on the host, default is `/var/www/i-librarian-pro`. The directory must exist on the host:
     ```sh
     mkdir -p /var/www/i-librarian-pro
     ```
-* Line 27: log directory on the host, default is `/var/log/i-librarian`. The directory must exist, and be writeable by user 9060:
+* Line 15: log directory on the host, default is `/var/log/i-librarian`. The directory must exist, and be writeable by user 9060:
     ```sh
     mkdir -p /var/log/i-librarian
     chown -R 9060:9060 /var/log/i-librarian
     ```
-* Line 31: config directory on the host, default is `/etc/opt/i-librarian-pro`. Extract the configuration file to that location:
+* Line 19: config directory on the host, default is `/etc/opt/i-librarian-pro`. Extract the configuration file to that location:
     ```sh
-    tar xzf i-librarian-pro-6.0.26.tgz ./etc/opt/i-librarian-pro/run-default-docker.env --strip-components=4
+    tar xzf i-librarian-pro-6.1.2.tgz ./etc/opt/i-librarian-pro/run-default-docker.env --strip-components=4
     mkdir -p /etc/opt/i-librarian-pro
     mv run-default-docker.env /etc/opt/i-librarian-pro/run.env
     ```
@@ -53,21 +51,10 @@ docker compose up -d
 
 *I, Librarian* allows you to create separate libraries.
 Their names will be related to their URL pathname. For instance, a library `foo` will be located at `domain.com/foo`.
-For this reason, it is best to use lower-case ASCII characters only.
-
-### 3a. Create *Solr* core (index)
-
-Replace `LIBRARYNAME` with your own library name.
+For this reason, it is best to use lower-case ASCII characters only. Run Docker command (replace LIBRARYNAME with your library name):
 
 ```sh
-docker exec -it solr-il solr create_core -c LIBRARYNAME
-docker exec -it solr-il solr config -c LIBRARYNAME --action set-user-property --property update.autoCreateFields --value false
-```
-
-### 3b. Create library in *I, Librarian*
-
-```sh
-docker exec --user root -it il i-librarian-pro create_library_container -name LIBRARYNAME
+docker exec --user root -it il i-librarian-pro create_library -name LIBRARYNAME
 ```
 
 ## 4. Post-installation notes
@@ -110,23 +97,18 @@ docker restart il
 
 ### 5a. Create another library.
 
-Repeat steps in I. 3a, and I. 3b. Container restart is not required.
+Repeat step I. 3. Container restart is not required.
 
 ### 5b. Delete a library.
 
-Delete library *Solr* core:
+Run docker command (replace LIBRARYNAME with your library name):
 ```sh
-docker exec -it solr-il solr delete -c LIBRARYNAME
-```
-Delete library data storage:
-```sh
-docker exec --user root -it il i-librarian-pro delete_library_container -name LIBRARYNAME
+docker exec --user root -it il i-librarian-pro delete_library -name LIBRARYNAME
 ```
 
 ### 5c. Back up data.
 
-Copy your host storage directory to a safe place. If you wish to back up the Solr docker volume too, refer to the official
-Docker documentation on volume backups.
+Stop *I, Librarian* container and copy your host storage directory to a safe place.
 
 # II. Upgrade *I, Librarian* in *Docker*
 
@@ -137,16 +119,16 @@ All instructions are for *docker engine*.
 
 ## 1. Build new *I, Librarian* image
 
-First stop, and delete the existing *I, Librarian* container. Then proceed to build a new image:
+Stop, and delete the existing *I, Librarian* container. Then proceed to build a new image:
 ```sh
-docker build -t i-librarian-pro:6.0.26 - < i-librarian-pro-6.0.26.tgz
+docker build -t i-librarian-pro:6.1.2 - < i-librarian-pro-6.1.2.tgz
 ```
 
-## 2. Start *I, Librarian* and *Solr* containers with docker compose
+## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-pro-6.0.26.tgz ./docker-compose.yml
+tar xzf i-librarian-pro-6.1.2.tgz ./docker-compose.yml
 ```
 
 If necessary, customize `docker-compose.yml`, as described in I. 2.
@@ -165,7 +147,7 @@ docker exec --user root -it il i-librarian-pro upgrade
 # III. Upgrade *I, Librarian* in *Docker* from version 5
 
 **It is always a good idea to back up the current library first. It will allow you to continue using version 5, in case
-of an issue.** 
+of an issue.**
 
 ## 1. Prepare *I, Librarian* storage directory
 
@@ -181,14 +163,14 @@ of an issue.**
 ## 2. Build new *I, Librarian* image
 
 ```sh
-docker build -t i-librarian-pro:6.0.26 - < i-librarian-pro-6.0.26.tgz
+docker build -t i-librarian-pro:6.1.2 - < i-librarian-pro-6.1.2.tgz
 ```
 
-## 3. Start *I, Librarian* and *Solr* containers with docker compose
+## 3. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-pro-6.0.26.tgz ./docker-compose.yml
+tar xzf i-librarian-pro-6.1.2.tgz ./docker-compose.yml
 ```
 
 Customize `docker-compose.yml`, as described in I. 2.

@@ -5,10 +5,10 @@ systems can use the containerized version.
 
 ## 1. Install *I, Librarian* using the `install` command
 
-Run the following commands. 
+Run the following commands.
 
 ```bash
-tar -xzf i-librarian-pro-6.0.26.tgz -C / ./etc ./opt ./usr
+tar -xzf i-librarian-pro-6.1.2.tgz -C / ./etc ./opt ./usr
 /opt/i-librarian-pro/i-librarian-pro install
 ```
 
@@ -24,7 +24,7 @@ number of items.
 ## 2. Create a library
 
 You can create a new library as indicated below. Replace `LIBRARYNAME` with the name of your library. Use lowercase ASCII letters
-and numbers only.
+and numbers only. Run command (replace LIBRARYNAME with your library name):
 
 ```sh
 /opt/i-librarian-pro/i-librarian-pro create_library -name LIBRARYNAME
@@ -51,7 +51,7 @@ You can change some technical aspects in there, like storage directory, ports (i
 URL maps to libraries.
 
 External API keys may be added to the file to affect all libraries. Alternatively, you can add them in *I, Librarian’s*
- `Administrator > Global Settings` for each library. API keys can be obtained here:
+`Administrator > Global Settings` for each library. API keys can be obtained here:
 
 * NCBI (https://support.nlm.nih.gov/kbArticle/?pn=KA-05317) (free)
 * Crossref search requires your email address as the API key (free)
@@ -70,19 +70,6 @@ service il-pro stop
 service il-pro start
 ```
 
-### 3c. Solr memory
-
-Solr memory allocation should be increased to avoid memory crashes. We recommend
-a minimum of 1 GB, plus an extra 1 GB RAM for each 20,000 PDFs. This is only
-a rough estimate, you will need to experiment with RAM requirements yourself.
-
-```bash
-nano /etc/default/solr.in.sh
-```
-```bash
-SOLR_HEAP="8g"
-```
-
 ## 4. How do I
 
 ### 4a. Create another library.
@@ -91,7 +78,7 @@ Repeat step 2.
 
 ### 4b. Delete a library.
 
-Permanently delete *I, Librarian* library files and Solr core. Replace `LIBRARYNAME` with the name of your library.
+Permanently delete *I, Librarian* library files. Replace `LIBRARYNAME` with the name of your library.
 
 ```sh
 /opt/i-librarian-pro/i-librarian-pro delete_library -name LIBRARYNAME
@@ -99,8 +86,7 @@ Permanently delete *I, Librarian* library files and Solr core. Replace `LIBRARYN
 
 ### 4c. Back up data.
 
-Copy your storage directory `/var/www/i-librarian-pro` to a safe place. If you wish to back up the Solr index too,
-the files are located in `/var/solr/data`.
+Stop *I, Librarian* service and copy your storage directory `/var/www/i-librarian-pro` to a safe place.
 
 ### 4d. Upgrade *I, Librarian*.
 
@@ -111,7 +97,7 @@ Stop *I, Librarian*, unpack the new files, start the service, and run the upgrad
 
 ```bash
 service il-pro stop
-tar -xzf i-librarian-pro-6.0.26.tgz -C / ./opt
+tar -xzf i-librarian-pro-6.1.2.tgz -C / ./opt
 service il-pro start
 /opt/i-librarian-pro/i-librarian-pro upgrade
 ```
@@ -120,7 +106,6 @@ Complete reindexing is required after upgrade from a version 5. It can be perfor
 
 ### 4e. Uninstall *I, Librarian*.
 
-Please note that Apache Solr will be uninstalled too.
 ```bash
 /opt/i-librarian-pro/i-librarian-pro uninstall
 ```
