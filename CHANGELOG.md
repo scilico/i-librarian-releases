@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.3] - 2026-04-16
+
+### Added
+- Import UID notification when UID not found.
+
+### Changed
+- Due to internal code refactoring, some installation instructions were changed.
+
 ## [6.1.2] - 2026-04-14
 
 ### Added

@@ -8,14 +8,14 @@ systems can use the containerized version.
 Run the following commands.
 
 ```bash
-tar -xzf i-librarian-pro-6.1.2.tgz -C / ./etc ./opt ./usr
-/opt/i-librarian-pro/i-librarian-pro install
+tar -xzf i-librarian-[TAG].tgz -C / ./etc ./opt ./usr
+/opt/i-librarian/i-librarian install
 ```
 
 If you purchased a license, add the license key to the config directory:
 
 ```sh
-cp -f i-librarian.key /etc/opt/i-librarian-pro/i-librarian.key
+cp -f i-librarian.key /etc/opt/i-librarian/i-librarian.key
 ```
 
 With no license key present,  *I, Librarian* will run in an evaluation mode, which is restricted to adding and displaying a small
@@ -27,7 +27,7 @@ You can create a new library as indicated below. Replace `LIBRARYNAME` with the 
 and numbers only. Run command (replace LIBRARYNAME with your library name):
 
 ```sh
-/opt/i-librarian-pro/i-librarian-pro create_library -name LIBRARYNAME
+/opt/i-librarian/i-librarian create_library -name LIBRARYNAME
 ```
 
 ## 3. Post-installation notes
@@ -46,7 +46,7 @@ example.com {
 
 ### 3b. Settings in run.env
 
-*I, Librarian* settings can be found in `/etc/opt/i-librarian-pro/run.env`.
+*I, Librarian* settings can be found in `/etc/opt/i-librarian/run.env`.
 You can change some technical aspects in there, like storage directory, ports (in case of conflicts), or how your
 URL maps to libraries.
 
@@ -66,8 +66,8 @@ External API keys may be added to the file to affect all libraries. Alternativel
 Changes in the `run.env` require *I, Librarian* restart.
 
 ```sh
-service il-pro stop
-service il-pro start
+service il stop
+service il start
 ```
 
 ## 4. How do I
@@ -81,12 +81,12 @@ Repeat step 2.
 Permanently delete *I, Librarian* library files. Replace `LIBRARYNAME` with the name of your library.
 
 ```sh
-/opt/i-librarian-pro/i-librarian-pro delete_library -name LIBRARYNAME
+/opt/i-librarian/i-librarian delete_library -name LIBRARYNAME
 ```
 
 ### 4c. Back up data.
 
-Stop *I, Librarian* service and copy your storage directory `/var/www/i-librarian-pro` to a safe place.
+Stop *I, Librarian* service and copy your storage directory `/var/www/i-librarian` to a safe place.
 
 ### 4d. Upgrade *I, Librarian*.
 
@@ -96,10 +96,10 @@ up regularly.**
 Stop *I, Librarian*, unpack the new files, start the service, and run the upgrade command:
 
 ```bash
-service il-pro stop
-tar -xzf i-librarian-pro-6.1.2.tgz -C / ./opt
-service il-pro start
-/opt/i-librarian-pro/i-librarian-pro upgrade
+service il stop
+tar -xzf i-librarian-[TAG].tgz -C / ./opt
+service il start
+/opt/i-librarian/i-librarian upgrade
 ```
 Complete reindexing is required after upgrade from a version 5. It can be performed in *I, Librarian* `Administrator` menu,
 `Software details` > `Rebuild indexes` button.
@@ -107,5 +107,5 @@ Complete reindexing is required after upgrade from a version 5. It can be perfor
 ### 4e. Uninstall *I, Librarian*.
 
 ```bash
-/opt/i-librarian-pro/i-librarian-pro uninstall
+/opt/i-librarian/i-librarian uninstall
 ```

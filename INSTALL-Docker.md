@@ -5,38 +5,38 @@ All instructions are for *docker engine*.
 ## 1. Build *I, Librarian* image
 
 ```sh
-docker build -t i-librarian-pro:6.1.2 - < i-librarian-pro-6.1.2.tgz
+docker build -t i-librarian:[TAG] - < i-librarian-[TAG].tgz
 ```
 
 ## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-pro-6.1.2.tgz ./docker-compose.yml
+tar xzf i-librarian-[TAG].tgz ./docker-compose.yml
 ```
 
 The included `docker-compose.yml` will work as is, but feel free to customize your setup.
 
-* Line 11: storage directory on the host, default is `/var/www/i-librarian-pro`. The directory must exist on the host:
+* Line 11: storage directory on the host, default is `/var/www/i-librarian`. The directory must exist on the host:
     ```sh
-    mkdir -p /var/www/i-librarian-pro
+    mkdir -p /var/www/i-librarian
     ```
 * Line 15: log directory on the host, default is `/var/log/i-librarian`. The directory must exist, and be writeable by user 9060:
     ```sh
     mkdir -p /var/log/i-librarian
     chown -R 9060:9060 /var/log/i-librarian
     ```
-* Line 19: config directory on the host, default is `/etc/opt/i-librarian-pro`. Extract the configuration file to that location:
+* Line 19: config directory on the host, default is `/etc/opt/i-librarian`. Extract the configuration file to that location:
     ```sh
-    tar xzf i-librarian-pro-6.1.2.tgz ./etc/opt/i-librarian-pro/run-default-docker.env --strip-components=4
-    mkdir -p /etc/opt/i-librarian-pro
-    mv run-default-docker.env /etc/opt/i-librarian-pro/run.env
+    tar xzf i-librarian-[TAG].tgz ./etc/opt/i-librarian/run-default-docker.env --strip-components=4
+    mkdir -p /etc/opt/i-librarian
+    mv run-default-docker.env /etc/opt/i-librarian/run.env
     ```
 
 If you purchased a license, add the license key to the host config directory:
 
 ```sh
-cp -f i-librarian.key /etc/opt/i-librarian-pro/i-librarian.key
+cp -f i-librarian.key /etc/opt/i-librarian/i-librarian.key
 ```
 
 With no license key present, *I, Librarian* will run in an evaluation mode, which is restricted to adding and displaying a small
@@ -54,7 +54,7 @@ Their names will be related to their URL pathname. For instance, a library `foo`
 For this reason, it is best to use lower-case ASCII characters only. Run Docker command (replace LIBRARYNAME with your library name):
 
 ```sh
-docker exec --user root -it il i-librarian-pro create_library -name LIBRARYNAME
+docker exec --user root -it il i-librarian create_library -name LIBRARYNAME
 ```
 
 ## 4. Post-installation notes
@@ -103,7 +103,7 @@ Repeat step I. 3. Container restart is not required.
 
 Run docker command (replace LIBRARYNAME with your library name):
 ```sh
-docker exec --user root -it il i-librarian-pro delete_library -name LIBRARYNAME
+docker exec --user root -it il i-librarian delete_library -name LIBRARYNAME
 ```
 
 ### 5c. Back up data.
@@ -121,14 +121,14 @@ All instructions are for *docker engine*.
 
 Stop, and delete the existing *I, Librarian* container. Then proceed to build a new image:
 ```sh
-docker build -t i-librarian-pro:6.1.2 - < i-librarian-pro-6.1.2.tgz
+docker build -t i-librarian:[TAG] - < i-librarian-[TAG].tgz
 ```
 
 ## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-pro-6.1.2.tgz ./docker-compose.yml
+tar xzf i-librarian-[TAG].tgz ./docker-compose.yml
 ```
 
 If necessary, customize `docker-compose.yml`, as described in I. 2.
@@ -141,7 +141,7 @@ docker compose up -d
 ## 3. Run upgrade command
 
 ```sh
-docker exec --user root -it il i-librarian-pro upgrade
+docker exec --user root -it il i-librarian upgrade
 ```
 
 # III. Upgrade *I, Librarian* in *Docker* from version 5
@@ -153,24 +153,24 @@ of an issue.**
 
 * Optional. Move libraries to the new storage folder, if changed between versions.
     ```
-    cp -r /v5/storage/dir/[LIBRARYNAME]/data /var/www/i-librarian-pro/[LIBRARYNAME]
+    cp -r /v5/storage/dir/[LIBRARYNAME]/data /var/www/i-librarian/[LIBRARYNAME]
     ```
 * Change the owner and group of your library `data` directory to 9060. That's the new UID and GID in the container.
     ```
-    chown -R 9060:9060 /var/www/i-librarian-pro/[LIBRARYNAME]/data
+    chown -R 9060:9060 /var/www/i-librarian/[LIBRARYNAME]/data
     ```
 
 ## 2. Build new *I, Librarian* image
 
 ```sh
-docker build -t i-librarian-pro:6.1.2 - < i-librarian-pro-6.1.2.tgz
+docker build -t i-librarian:[TAG] - < i-librarian-[TAG].tgz
 ```
 
 ## 3. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-pro-6.1.2.tgz ./docker-compose.yml
+tar xzf i-librarian-[TAG].tgz ./docker-compose.yml
 ```
 
 Customize `docker-compose.yml`, as described in I. 2.
@@ -183,7 +183,7 @@ docker compose up -d
 ## 4. Run upgrade command
 
 ```sh
-docker exec --user root -it il i-librarian-pro upgrade
+docker exec --user root -it il i-librarian upgrade
 ```
 
 Complete reindexing is required after upgrade from a version 5. It can be performed in *I, Librarian* `Administrator` menu,
