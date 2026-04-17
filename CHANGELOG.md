@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.5] - 2026-04-17
+
+### Fixed
+- Error in create_library command.
+- Race condition in opening Bleve index.
+
 ## [6.1.3] - 2026-04-16
 
 ### Added
