@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.6] - 2026-04-18
+
+### Fixed
+- Race condition in opening Bleve index again.
+
 ## [6.1.5] - 2026-04-17
 
 ### Fixed
