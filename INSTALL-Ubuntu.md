@@ -8,7 +8,7 @@ systems can use the containerized version.
 Run the following commands.
 
 ```bash
-tar -xzf i-librarian-6.1.6.tgz -C / ./etc ./opt ./usr
+tar -xzf i-librarian-6.1.9.tgz -C / ./etc ./opt ./usr
 /opt/i-librarian/i-librarian install
 ```
 
@@ -97,7 +97,7 @@ Stop *I, Librarian*, unpack the new files, start the service, and run the upgrad
 
 ```bash
 service il stop
-tar -xzf i-librarian-6.1.6.tgz -C / ./opt
+tar -xzf i-librarian-6.1.9.tgz -C / ./opt
 service il start
 /opt/i-librarian/i-librarian upgrade
 ```

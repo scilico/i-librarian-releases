@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.9] - 2026-04-27
+
+### Added
+- MCP server for the *I, Librarian* API.
+- AI search in Dashboard that transforms search terms into advanced search.
+- Integrated OpenAlex search. We recommend using OpenAlex as a primary source for references across all research fields.
+
+### Changed
+- Gemini 2.5 Flash Lite model replaced by Gemini 3.1 Flash Lite Preview. Customers should update their production `run.env` like this:
+    ```env
+    AI_MODEL_TIER3=gemini-3.1-flash-lite-preview
+    ```
+
+### Fixed
+- Updated patent search to accommodate undocumented changes to the EPO API.
+
 ## [6.1.6] - 2026-04-18
 
 ### Fixed

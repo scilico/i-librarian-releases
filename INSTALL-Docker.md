@@ -5,14 +5,14 @@ All instructions are for *docker engine*.
 ## 1. Build *I, Librarian* image
 
 ```sh
-docker build -t i-librarian:6.1.6 - < i-librarian-6.1.6.tgz
+docker build -t i-librarian:6.1.9 - < i-librarian-6.1.9.tgz
 ```
 
 ## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-6.1.6.tgz ./docker-compose.yml
+tar xzf i-librarian-6.1.9.tgz ./docker-compose.yml
 ```
 
 The included `docker-compose.yml` will work as is, but feel free to customize your setup.
@@ -28,7 +28,7 @@ The included `docker-compose.yml` will work as is, but feel free to customize yo
     ```
 * Line 19: config directory on the host, default is `/etc/opt/i-librarian`. Extract the configuration file to that location:
     ```sh
-    tar xzf i-librarian-6.1.6.tgz ./etc/opt/i-librarian/run-default-docker.env --strip-components=4
+    tar xzf i-librarian-6.1.9.tgz ./etc/opt/i-librarian/run-default-docker.env --strip-components=4
     mkdir -p /etc/opt/i-librarian
     mv run-default-docker.env /etc/opt/i-librarian/run.env
     ```
@@ -121,14 +121,14 @@ All instructions are for *docker engine*.
 
 Stop, and delete the existing *I, Librarian* container. Then proceed to build a new image:
 ```sh
-docker build -t i-librarian:6.1.6 - < i-librarian-6.1.6.tgz
+docker build -t i-librarian:6.1.9 - < i-librarian-6.1.9.tgz
 ```
 
 ## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-6.1.6.tgz ./docker-compose.yml
+tar xzf i-librarian-6.1.9.tgz ./docker-compose.yml
 ```
 
 If necessary, customize `docker-compose.yml`, as described in I. 2.
@@ -163,14 +163,14 @@ of an issue.**
 ## 2. Build new *I, Librarian* image
 
 ```sh
-docker build -t i-librarian:6.1.6 - < i-librarian-6.1.6.tgz
+docker build -t i-librarian:6.1.9 - < i-librarian-6.1.9.tgz
 ```
 
 ## 3. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-6.1.6.tgz ./docker-compose.yml
+tar xzf i-librarian-6.1.9.tgz ./docker-compose.yml
 ```
 
 Customize `docker-compose.yml`, as described in I. 2.
