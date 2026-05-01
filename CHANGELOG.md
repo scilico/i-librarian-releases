@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.10] - 2026-05-01
+
+### Fixed
+- Incorrect password reset link in email messages.
+- Non-functional close buttons on certain filters.
+- Batch PDF upload interruption caused by screen lock.
+
 ## [6.1.9] - 2026-04-27
 
 ### Added
