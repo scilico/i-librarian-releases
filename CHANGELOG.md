@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.11] - 2026-05-06
+
+### Fixed
+- CLI commands now work with `LIBRARY_NAME=subdomain` setting.
+- Crash in search result highlighting.
+
 ## [6.1.10] - 2026-05-01
 
 ### Fixed
