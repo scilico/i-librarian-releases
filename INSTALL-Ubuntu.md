@@ -8,7 +8,7 @@ systems can use the containerized version.
 Run the following commands.
 
 ```bash
-tar -xzf i-librarian-6.1.11.tgz -C / ./etc ./opt ./usr
+tar -xzf i-librarian-6.1.12.tgz -C / ./etc ./opt ./usr
 /opt/i-librarian/i-librarian install
 ```
 
@@ -62,6 +62,7 @@ External API keys may be added to the file to affect all libraries. Alternativel
 * EPO patent search (https://www.epo.org/en/searching-for-patents/data/web-services/ops) (free/paid)
 * IEEE Xplore (https://developer.ieee.org/Quick_Start_Guide) (free)
 * NASA ADS (https://api.nasa.gov/) (free)
+* OpenAlex (https://openalex.org/) (paid)
 
 Changes in the `run.env` require *I, Librarian* restart.
 
@@ -97,7 +98,7 @@ Stop *I, Librarian*, unpack the new files, start the service, and run the upgrad
 
 ```bash
 service il stop
-tar -xzf i-librarian-6.1.11.tgz -C / ./opt
+tar -xzf i-librarian-6.1.12.tgz -C / ./opt
 service il start
 /opt/i-librarian/i-librarian upgrade
 ```

@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.12] - 2026-05-27
+
+### Added
+- OpenAlex in readme.
+
+### Changed
+- Gemini 3 AI models. Customers should update their production `run.env` like this:
+    ```env
+    AI_MODEL_TIER1=gemini-3.1-pro-preview
+    AI_MODEL_TIER2=gemini-3.5-flash
+    AI_MODEL_TIER3=gemini-3.1-flash-lite
+    ```
+
+### Fixed
+- Password reset email sending to non-existent emails.
+
 ## [6.1.11] - 2026-05-06
 
 ### Fixed
