@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.14] - 2026-10-12
+
+### Added
+- Redirect of deleted item IDs to existing IDs.
+- New API endpoint for PDF export.
+- Improved DOI search inputs also accept full URL DOI.
+
+### Changed
+- Offline app export contains PDFs with customized names.
+- Gemini 3 AI models. Customers should update their production `run.env` like this:
+    ```env
+    AI_MODEL_TIER1=gemini-3.1-pro-preview
+    AI_MODEL_TIER2=gemini-3.8-flash
+    AI_MODEL_TIER3=gemini-3.5-flash-lite
+    ```
+
+### Fixed
+- RIS item export crash.
+- Zombie indexing jobs will restart after 15 min of inactivity.
+
 ## [6.1.12] - 2026-05-27
 
 ### Added
