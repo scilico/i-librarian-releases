@@ -1,6 +1,31 @@
 # Changelog
 All notable changes to *I, Librarian Pro* will be documented in this file.
 
+## [6.1.15] - 2026-11-15
+
+### Added
+- Support for connecting to local AI models via the Ollama server.
+- Local OCR support using the Tesseract library.
+- AI-assisted metadata extraction for manual uploads across all supported file types.
+- Replaced Ghostscript with the pypdf backend library to enable annotated PDF exports.
+
+### Changed
+- AI search now includes semantic expansion for search keywords.
+- DOI input fields now accept both raw DOI strings and full URLs.
+- Gemini AI models. Customers should update their production `run.env` like this:
+    ```env
+    AI_MODEL_TIER1=gemini-4-carbon
+    AI_MODEL_TIER2=gemini-4-hydrogen
+    AI_MODEL_TIER3=gemini-3.5-flash-lite
+    ```
+
+### Fixed
+- Native installer bugs.
+- Memory leaks during file uploads.
+
+### Removed
+- Ghostscript backend library (replaced by pypdf).
+
 ## [6.1.14] - 2026-10-12
 
 ### Added

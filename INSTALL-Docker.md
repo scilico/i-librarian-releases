@@ -5,14 +5,24 @@ All instructions are for *docker engine*.
 ## 1. Build *I, Librarian* image
 
 ```sh
-docker build -t i-librarian:6.1.14 - < i-librarian-6.1.14.tgz
+docker build -t i-librarian:6.1.15 - < i-librarian-6.1.15.tgz
+```
+
+If you want to use local OCR instead of Google Cloud:
+```sh
+docker build --build-arg TESSERACT=true -t i-librarian:6.1.15 - < i-librarian-6.1.15.tgz
+```
+
+If you want to use local OCR instead of Google Cloud, and require a non-English language:
+```sh
+docker build --build-arg TESSERACT_ALL_LANGS=true -t i-librarian:6.1.15 - < i-librarian-6.1.15.tgz
 ```
 
 ## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-6.1.14.tgz ./docker-compose.yml
+tar xzf i-librarian-6.1.15.tgz ./docker-compose.yml
 ```
 
 The included `docker-compose.yml` will work as is, but feel free to customize your setup.
@@ -28,7 +38,7 @@ The included `docker-compose.yml` will work as is, but feel free to customize yo
     ```
 * Line 19: config directory on the host, default is `/etc/opt/i-librarian`. Extract the configuration file to that location:
     ```sh
-    tar xzf i-librarian-6.1.14.tgz ./etc/opt/i-librarian/run-default-docker.env --strip-components=4
+    tar xzf i-librarian-6.1.15.tgz ./etc/opt/i-librarian/run-default-docker.env --strip-components=4
     mkdir -p /etc/opt/i-librarian
     mv run-default-docker.env /etc/opt/i-librarian/run.env
     ```
@@ -122,14 +132,14 @@ All instructions are for *docker engine*.
 
 Stop, and delete the existing *I, Librarian* container. Then proceed to build a new image:
 ```sh
-docker build -t i-librarian:6.1.14 - < i-librarian-6.1.14.tgz
+docker build -t i-librarian:6.1.15 - < i-librarian-6.1.15.tgz
 ```
 
 ## 2. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-6.1.14.tgz ./docker-compose.yml
+tar xzf i-librarian-6.1.15.tgz ./docker-compose.yml
 ```
 
 If necessary, customize `docker-compose.yml`, as described in I. 2.
@@ -164,14 +174,14 @@ of an issue.**
 ## 2. Build new *I, Librarian* image
 
 ```sh
-docker build -t i-librarian:6.1.14 - < i-librarian-6.1.14.tgz
+docker build -t i-librarian:6.1.15 - < i-librarian-6.1.15.tgz
 ```
 
 ## 3. Start *I, Librarian* container with docker compose
 
 Extract `docker-compose.yml`:
 ```sh
-tar xzf i-librarian-6.1.14.tgz ./docker-compose.yml
+tar xzf i-librarian-6.1.15.tgz ./docker-compose.yml
 ```
 
 Customize `docker-compose.yml`, as described in I. 2.
@@ -188,4 +198,8 @@ docker exec --user root -it il i-librarian upgrade
 ```
 
 Complete reindexing is required after upgrade from a version 5. It can be performed in *I, Librarian* `Administrator` menu,
-`Software details` > `Rebuild indexes` button.
+`Software details` > `Rebuild indexes` button. For very large libraries, the following Docker command may work better:
+
+```sh
+docker exec -it il i-librarian reindex
+```
